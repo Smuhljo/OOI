@@ -1,4 +1,7 @@
 #Zadatak 1
+#Mirza Olovcic Indeks:19230 
+#Muhamed Selmanovic Indeks:19115
+#Paketi koji su korišteni: Interact, Plots, Blink
 
 using Pkg
 Pkg.add("Blink")
