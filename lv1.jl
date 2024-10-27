@@ -142,7 +142,7 @@ e = b[1:2:8, 1:2:8]
 
 # a)
 x1 = range(-pi, pi, length = 101)
-y1 = sin.(x)
+y1 = sin.(x1)
 
 p1 = plot(x1, y1, title = "Sinus", label = "sin(x)")
 
