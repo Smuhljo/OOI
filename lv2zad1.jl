@@ -1,3 +1,9 @@
+#=
+Neko preduzeće plasira na trţište dvije vrste mljevene kafe K1 i K2. Očekivana zarada je 3
+novčane jedinice (skraćeno n.j.) po kilogramu za kafu K1 (tj. 3 n.j./kg), a 2 n.j./kg za kafu K2. Pogon
+za przenje kafe je na raspolaganju 150 sati sedmično, a pogon za mljevenje kafe 60 sati sedmično.
+=#
+
 using Pkg
 
 Pkg.add("JuMP")
@@ -24,7 +30,12 @@ println("x2 = ", value(x2))
 println("Vrijednost cilja: ", objective_value(m))
 
 
-# Zadatak 1b
+#=
+Potrebno je obezbijediti vitaminsku terapiju koja će sadrţavati četiri vrste vitamina V1, V2,
+V3 i V4. Na raspolaganju su dvije vrste vitaminskih sirupa S1 i S2 čije su cijene 40 n.j./g i 30 n.j./g
+respektivno. Vitaminski koktel mora sadrţavati najmanje 0.2 g, 0.3 g, 3 g i 1.2 g vitamina V1, V2, V3 i
+V4 respektivno.
+=#
 
 m=Model(GLPK.Optimizer)
 @variable(m, x1>=0)
@@ -46,7 +57,17 @@ println("x2 = ", value(x2))
 println("Vrijednost cilja: ", objective_value(m))
 
 
-# Zadatak 1c
+#=
+Planira se proizvodnja tri tipa detrdţenta D1, D2 i D3. Sa trgovačkom mreţom je dogovorena
+isporuka tačno 100 kg detrdţenta bez obzira na tip. Za uvoz odgovarajućeg repromaterijala planirano
+su sredstva u iznosu od 110 $. Po jednom kilogramu detrdţenta, za proizvodnju detrdţenata D1, D2 i
+D3 treba nabaviti repromaterijala u vrijednosti 2 $, 1.5 $ odnosno 0.5 $. TakoĎer je planirano da se za
+proizvodnju uposle radnici sa angaţmanom od ukupno barem 120 radnih sati, pri čemu je za
+proizvodnju jednog kilograma detrdţenata D1, D2 i D3 potrebno uloţiti respektivno 2 sata, 1 sat
+odnosno 1 sat. Prodajna cijena detrdţenata D1, D2 i D3 po kilogramu respektivno iznosi 10 KM, 5 KM
+odnosno 8 KM. Formirati matematski model iz kojeg se moţe odrediti koliko treba proizvesti svakog
+od tipova detrdţenata da se pri tome ostvari maksimalna moguća zarada.
+=#
 
 m=Model(GLPK.Optimizer)
 @variable(m, x1>=0)
