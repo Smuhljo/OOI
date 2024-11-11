@@ -1,13 +1,15 @@
-using LinearAlgebraa
-
+using LinearAlgebra
+# Simplex algorithm in Julia
 function simplex(c, A, b)
     m, n = size(A)
     # Initialize simplex tableau
     tableau = hcat(b, A, Matrix{Float64}(I, m, m))  # Add slack variables
     BASE = collect(n+1:n+m)  # Basic variables
-    c_row = vcat(0.0, c, zeros(m))  # Cost row with slack variables
-    tableau = vcat([c_row'], tableau)
-    
+
+    # Ensure cost row has the same number of columns as tableau
+    c_row = hcat([0.0], c', zeros(1, m))  # Adjusting cost row dimensions
+    tableau = vcat(c_row, tableau)
+
     optimal = false
 
     # Simplex iterations
