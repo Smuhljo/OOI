@@ -58,6 +58,8 @@ function algoritam(simplexTabela)
     kolona = 0
     n = 0
 
+    #max broj u redu
+
     for n in simplexTabela[size(simplexTabela, 1), 2:end]
         if (n > maxElementRed)
             maxElementRed = n
@@ -80,6 +82,8 @@ function algoritam(simplexTabela)
     t = 100000000
     t_indeks = 0
     i = 1
+
+    # pivot
     
     while (i <= size(simplexTabela, 1) - 1)
         if (simplexTabela[i, 1] / simplexTabela[i, kolona] < t && simplexTabela[i, 1] / simplexTabela[i, kolona] >= 0)
@@ -90,6 +94,8 @@ function algoritam(simplexTabela)
     end
 
     pivot = simplexTabela[t_indeks, kolona]
+
+    #mijenja bazu sa pivot 
 
     for i in axes(simplexTabela, 1)
         if (i == t_indeks)
