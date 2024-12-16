@@ -1,7 +1,6 @@
 using DataStructures
 
 function CPM(A, P, T)
-    # Koraci 1: Formirati graf
     n = length(A)
     graph = Dict{String, Vector{String}}()
     duration = Dict{String, Int}()
@@ -27,7 +26,6 @@ function CPM(A, P, T)
         end
     end
 
-    # Korak 2: Najraniji početak i kraj
     earliest_start = Dict{String, Int}()
     earliest_finish = Dict{String, Int}()
 
@@ -40,7 +38,6 @@ function CPM(A, P, T)
         earliest_finish[activity] = earliest_start[activity] + duration[activity]
     end
 
-    # Korak 3: Najkasniji početak i kraj
     latest_finish = Dict{String, Int}()
     latest_start = Dict{String, Int}()
     Z = maximum(values(earliest_finish))
@@ -54,13 +51,11 @@ function CPM(A, P, T)
         latest_start[activity] = latest_finish[activity] - duration[activity]
     end
 
-    # Korak 4: Izračunati rezerve
     total_float = Dict{String, Int}()
     for activity in A
         total_float[activity] = latest_start[activity] - earliest_start[activity]
     end
 
-    # Korak 5: Očitavanje rješenja
     critical_path = []
     for activity in A
         if total_float[activity] == 0
@@ -71,11 +66,26 @@ function CPM(A, P, T)
     return Z, join(critical_path, " -> ")
 end
 
-# Testni primjer
 A = ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
 P = ["-", "-", "-", "C", "A", "A", "B, D", "E", "F, G"]
 T = [3, 3, 2, 2, 4, 1, 4, 1, 4]
 
-Z, path = CPM(A, P, T)
+Z, put = CPM(A, P, T)
 println("Trajanje kritičnog puta: $Z")
-println("Kritični put: $path")
+println("Kritični put: $put")
+
+A1 = ["A", "B", "C", "D", "E", "F", "G", "H"]
+P1 = ["-", "-", "-", "A", "A", "A, B", "D", "D, E, F"]
+T1 = [5, 4, 5, 1, 2, 7, 2, 2]
+
+Z1, put1 = CPM(A1, P1, T1)
+println("Trajanje kritičnog puta: $Z1")
+println("Kritični put: $put1")
+
+A2 = ["A", "B", "C", "D", "E", "F", "G", "H"]
+P2 = ["-", "A", "A", "A", "A", "B, C", "D, E", "F, G"]
+T2 = [15, 30, 45, 45, 15, 15, 15, 15]
+
+Z2, put2 = CPM(A2, P2, T2)
+println("Trajanje kritičnog puta: $Z2")
+println("Kritični put: $put2")
