@@ -1,4 +1,4 @@
-#Laboratorijsku vježbu radili: Muhamed Selmanovic 19115 i Mirza Olovcic 19200
+#Laboratorijsku vježbu radili: Muhamed Selmanovic 19115 i Mirza Olovcic 19230
 function rasporedi(M)
     broj_redova = size(M, 1);
     broj_kolona = size(M,2);
